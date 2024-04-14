@@ -58,7 +58,7 @@ public class RemoteFormNotificationHandler extends BaseUserNotificationHandler {
 
 	// 右上角 通知的畫面顯示 "HTML版型";
 	protected String getBodyTemplate() throws Exception {
-		String body = ContentUtil.get("/com/fansysoft/remote/notification/tmpl/remote_form.tmpl", true);
+		String body = ContentUtil.get("/com/remote/notification/tmpl/remote_form.tmpl", true);
 		return body;
 	}
 

@@ -174,7 +174,7 @@ public class RemoteFormAssetRenderer extends BaseAssetRenderer {
 	@Override
 	protected String getIconPath(ThemeDisplay themeDisplay) {
 		// return themeDisplay.getPathThemeImages() + "/common/otform.png";
-		return themeDisplay.getURLPortal().concat("/FansySoft-Remote-Application-portlet/images/remote.png");
+		return themeDisplay.getURLPortal().concat("/Remote-Application-portlet/images/remote.png");
 	}
 
 }

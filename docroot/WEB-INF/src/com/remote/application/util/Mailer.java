@@ -74,7 +74,7 @@ public class Mailer {
 
 		String entryType = RemoteFormConstants.REMOTEFORM_TYPE;
 
-		String subject = "[FansySoft-EIP] 有新的 ${entryType} 申請等待您簽核";
+		String subject = "有新的 ${entryType} 申請等待您簽核";
 		String content = ContentUtil.get("mail-tmpl/review_content.tmpl");
 		
 		String reviewURL = URLUtil.getReviewURL(remoteForm.getGroupId());		
@@ -122,7 +122,7 @@ public class Mailer {
 
 		String entryType = RemoteFormConstants.REMOTEFORM_TYPE;
 
-		String subject = "[FansySoft-EIP] 您的  ${entryType} 申請已核准";
+		String subject = "您的  ${entryType} 申請已核准";
 		String content = ContentUtil.get("mail-tmpl/result_content.tmpl");
 		String result = "核准";
 		String resultURL = URLUtil.getApprovedURL(remoteForm.getGroupId());
@@ -168,7 +168,7 @@ public class Mailer {
 		}
 		
 		String entryType = RemoteFormConstants.REMOTEFORM_TYPE;
-		String subject = "[FansySoft-EIP] 您的  ${entryType} 申請已拒絕";
+		String subject = "您的  ${entryType} 申請已拒絕";
 		String content = ContentUtil.get("mail-tmpl/result_content.tmpl");
 		String result = "拒絕";
 		String resultURL = URLUtil.getApprovedURL(remoteForm.getGroupId());

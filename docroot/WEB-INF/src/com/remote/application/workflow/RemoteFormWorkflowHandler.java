@@ -116,7 +116,7 @@ public class RemoteFormWorkflowHandler extends BaseWorkflowHandler {
 	protected String getIconPath(ThemeDisplay themeDisplay) {
 
 		// return themeDisplay.getPathThemeImages() + "/common/pages.png";
-		return themeDisplay.getURLPortal().concat("/FansySoft-Remote-Application-portlet/images/remote.png");
+		return themeDisplay.getURLPortal().concat("/Remote-Application-portlet/images/remote.png");
 	}
 
 }

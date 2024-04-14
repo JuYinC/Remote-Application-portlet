@@ -23,47 +23,47 @@
 		<name>review</name>
 		<metadata><![CDATA[{"xy":[168,36],"transitions":{"deny":{"bendpoints":[]}}}]]></metadata>
 		<actions>
-            <notification>
-                <name>Review Notification</name>
-                <description>[FansySoft-EIP] New submission is ready for review.</description>
-                <template>${userName} sent you a ${entryType} for review in the workflow.</template>
-                <template-language>freemarker</template-language>
-                <notification-type>user-notification</notification-type>
-                <execution-type>onAssignment</execution-type>
-            </notification>
+			<notification>
+				<name>Review Notification</name>
+				<description>New submission is ready for review.</description>
+				<template>${userName} sent you a ${entryType} for review in the workflow.</template>
+				<template-language>freemarker</template-language>
+				<notification-type>user-notification</notification-type>
+				<execution-type>onAssignment</execution-type>
+			</notification>
 			<notification>
 				<name>Review Completion Notification</name>
 				<template>
 					Your submission has been reviewed and the reviewer has applied the following ${taskComments}.</template>
 				<template-language>freemarker</template-language>
-                <notification-type>user-notification</notification-type>
+				<notification-type>user-notification</notification-type>
 				<recipients>
 					<user />
 				</recipients>
 				<execution-type>onExit</execution-type>
 			</notification>
 		</actions>
-        <assignments>
-            <scripted-assignment>
-                <script><![CDATA[						import com.liferay.portal.kernel.workflow.WorkflowConstants;
+		<assignments>
+			<scripted-assignment>
+				<script><![CDATA[						import com.liferay.portal.kernel.workflow.WorkflowConstants;
 						import com.liferay.portal.model.User;
 						import com.liferay.portal.model.Role;
 						import com.liferay.portal.service.UserLocalServiceUtil;
 					
 						roles = null;
 						user = (User) workflowContext.get("auditor");]]></script>
-                <script-language>groovy</script-language>
-            </scripted-assignment>
-        </assignments>
+				<script-language>groovy</script-language>
+			</scripted-assignment>
+		</assignments>
 		<transitions>
 			<transition>
 				<name>approve</name>
 				<target>approved</target>
 			</transition>
-            <transition>
-                <name>deny</name>
-                <target>denied</target>
-            </transition>
+			<transition>
+				<name>deny</name>
+				<target>denied</target>
+			</transition>
 		</transitions>
 	</task>
 	<state>
@@ -89,21 +89,21 @@
 			</action>
 		</actions>
 	</state>
-    <state>
-        <name>denied</name>
-        <metadata><![CDATA[{"xy":[180,240]}]]></metadata>
-        <actions>
-            <action>
-                <name>denied</name>
-                <script><![CDATA[
+	<state>
+		<name>denied</name>
+		<metadata><![CDATA[{"xy":[180,240]}]]></metadata>
+		<actions>
+			<action>
+				<name>denied</name>
+				<script><![CDATA[
 					
 						import com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil;
 						import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 						WorkflowStatusManagerUtil.updateStatus(WorkflowConstants.toStatus("denied"), workflowContext);]]></script>
-                <script-language>groovy</script-language>
-                <execution-type>onEntry</execution-type>
-            </action>
-        </actions>
-    </state>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+	</state>
 </workflow-definition>
