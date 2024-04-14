@@ -20,9 +20,12 @@ This portlet is designed to enhance workplace flexibility by making the process 
 
 ![Main View](screenshots/main.png "Main View")
 Portlet Main View
+
 ![Applying](screenshots/apply.png "Applying")
 Applying Remote Work
+
 ![Calendar View](screenshots/calendar.png "Calendar View")
 Displaying who is working remotely in Calendar View
+
 ![Supervisor Review](screenshots/review.png "Supervisor Review")
 Supervisor review remote work applications
