@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom-sql>
+	<sql id="com.remote.application.service.persistence.RemoteFormFinder.search">
+		<![CDATA[
+			SELECT * FROM remote_remoteform rrf
+			WHERE 1 = 1
+				AND rrf.applicant = ?
+				AND rrf.status = ?
+				AND rrf.remoteDate >= ?
+				AND rrf.remoteDate <= ?
+				AND (rrf.remark LIKE ? OR rrf.remoteFormId = ?)
+		]]>
+	</sql> 
+	
+	<sql id="com.remote.application.service.persistence.RemoteFormFinder.countBySearch">
+		<![CDATA[
+			SELECT 
+			    COUNT(*) AS COUNT_VALUE
+			FROM
+			    remote_remoteform rrf
+			WHERE 1 = 1 
+			    AND rrf.applicant = ?
+			    AND rrf.status = ?
+			    AND rrf.remoteDate >= ?
+				AND rrf.remoteDate <= ?
+			    AND (rrf.remark LIKE ? OR rrf.remoteFormId = ?)
+		]]>
+	</sql>
+	
+	<sql id="com.remote.application.service.persistence.RemoteFormFinder.fetchCycles">
+		<![CDATA[			
+			SELECT 
+				CONCAT(year_, LPAD(month_, 2, '0')) AS yearMonth
+			FROM 
+			(SELECT 
+			EXTRACT(YEAR FROM remoteDate) AS year_, 
+			EXTRACT(MONTH FROM remoteDate) AS month_
+			FROM remote_remoteform rrf
+			WHERE 1 = 1
+				AND rrf.applicant = ?
+				AND rrf.status = ?
+			GROUP BY EXTRACT(YEAR FROM remoteDate), EXTRACT(MONTH FROM remoteDate)) AS a
+			ORDER BY yearMonth DESC
+		]]>
+	</sql>
+	
+		<!-- 單子的起迄日期 在 搜尋起迄日期 範圍內的 -->
+	<sql id="com.remote.application.service.persistence.RemoteFormFinder.searchForStatistics">
+		<![CDATA[
+			SELECT * FROM remote_remoteform rrf 
+			WHERE 1 = 1
+				AND rrf.applicant = ?
+				[$STATUS$]
+				AND rrf.remoteDate >= ? 
+				AND rrf.remoteDate <= ?
+		]]>
+	</sql>
+	
+	<sql id="com.remote.application.service.persistence.RemoteFormFinder.checkOverlappingTimes">
+		<![CDATA[
+			SELECT * FROM remote_remoteform rrf 
+			WHERE 1 = 1
+				AND rrf.applicant = ?
+				AND date(rrf.remoteDate) = date(?) 
+		]]>
+	</sql>
+</custom-sql>

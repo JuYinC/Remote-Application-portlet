@@ -1,0 +1,50 @@
+.aui dd {
+	margin: 0 0 10px 10px;
+}
+
+.aui .table th, .aui .table td {
+	vertical-align: middle;
+}
+
+.aui .label {
+	font-size: 14px;
+}
+
+.aui .form input[type="text"], .aui select, .aui textarea {
+	font-weight: bold;
+}
+
+.aui .fill-form-wrapper {
+	border: #ccc solid 1px;
+    padding: 10px 30px;
+    border-radius: 6px;
+}
+
+.aui .fill-form-header {
+	text-align: center;
+	border-bottom: groove #ccc 3px;
+	padding-bottom: 10px;
+	margin-bottom: 20px;
+}
+
+.label-required {
+	visibility: hidden;
+	
+	&:before {
+		color: red;
+		font-weight: bold;
+		font-size: 16px;
+		content: '∗';
+		visibility: visible;
+		
+	}
+}
+
+.aui .simple-statistics-panel {
+	border-radius: 6px;
+	font-size: 15px;
+}
+
+.aui .simple-statistics-label {
+	font-weight: bold;
+}

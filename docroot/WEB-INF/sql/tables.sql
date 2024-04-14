@@ -1,0 +1,22 @@
+create table remote_RemoteForm (
+	remoteFormId LONG not null primary key,
+	creator VARCHAR(75) null,
+	applicant VARCHAR(75) null,
+	remoteDate DATE null,
+	endDateTime DATE null,
+	remark VARCHAR(500) null,
+	extPayload VARCHAR(500) null,
+	formTitle VARCHAR(75) null,
+	dayTab VARCHAR(75) null,
+	calendarBookingId LONG,
+	status INTEGER,
+	statusByUserId LONG,
+	statusByUsername VARCHAR(75) null,
+	statusDate DATE null,
+	companyId LONG,
+	groupId LONG,
+	cuserId LONG,
+	muserId LONG,
+	createDate DATE null,
+	modifiedDate DATE null
+);

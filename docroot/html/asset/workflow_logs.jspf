@@ -1,0 +1,89 @@
+<%//@ include file="/html/init.jsp"%>
+
+<%
+for (WorkflowLog workflowLog : workflowLogs) {
+	Role curRole = null;
+	User curUser = null;
+	String creactorName = null;
+	
+	if (workflowLog.getRoleId() != 0) {
+		curRole = RoleLocalServiceUtil.getRole(workflowLog.getRoleId());
+		creactorName = curRole.getDescriptiveName();
+	}
+	else if (workflowLog.getUserId() != 0) {
+		curUser = UserLocalServiceUtil.getUser(workflowLog.getUserId());
+		creactorName = curUser.getFullName();
+	}
+	
+	User creator = UserLocalServiceUtil.fetchUserByScreenName(company.getCompanyId(), curUser.getScreenName());
+	creactorName = Validator.isNotNull(creator) ? creator.getFullName() : curUser.getScreenName();
+%>
+	<div class="task-activity task-type-<%= workflowLog.getType() %>">
+		
+		<div>
+			<%= workflowLog.getComment().replaceAll("\n", "<br>") %>
+		</div>
+		
+		<c:choose>
+			<c:when test="<%= workflowLog.getType() == WorkflowLog.TASK_COMPLETION %>">
+				<div>
+					<p class="muted"><liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(creactorName), HtmlUtil.escape(workflowLog.getState())} %>" key="x-completed-the-task-x" /></p>
+				</div>
+			</c:when>
+			<c:when test="<%= workflowLog.getType() == WorkflowLog.TASK_UPDATE %>">
+				<div>
+					<liferay-ui:message arguments="<%= HtmlUtil.escape(creactorName) %>" key="x-updated-the-due-date" />
+				</div>
+			</c:when>
+			<c:when test="<%= workflowLog.getType() == WorkflowLog.TRANSITION %>">
+				<div>
+					<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(creactorName), HtmlUtil.escape(workflowLog.getPreviousState()), HtmlUtil.escape(workflowLog.getState())} %>" key="x-changed-the-state-from-x-to-x" />
+				</div>
+			</c:when>
+			<c:otherwise>
+				<c:choose>
+					<c:when test="<%= (curUser != null) && (workflowLog.getAuditUserId() == curUser.getUserId()) %>">
+						<div>
+							<liferay-ui:message arguments="<%= HtmlUtil.escape(curUser.getFullName()) %>" key='<%= curUser.isMale() ? "x-assigned-the-task-to-himself" : "x-assigned-the-task-to-herself" %>' />
+						</div>
+					</c:when>
+					<c:otherwise>
+
+						<%
+						if (curRole == null) {
+							String assignerName = PortalUtil.getUserName(workflowLog.getAuditUserId(), StringPool.BLANK);
+						%>
+
+							<div>
+								<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(assignerName), HtmlUtil.escape(creactorName)} %>" key="x-assigned-the-task-to-x" />
+
+								<c:if test="<%= workflowLog.getPreviousUserId() != 0 %>">
+									<liferay-ui:message arguments="<%= HtmlUtil.escape(PortalUtil.getUserName(workflowLog.getPreviousUserId(), StringPool.BLANK)) %>" key="previous-assignee-was-x" />
+								</c:if>
+							</div>
+
+						<%
+						}
+						else {
+						%>
+
+							<div>
+								<liferay-ui:message arguments="<%= HtmlUtil.escape(creactorName) %>" key="task-initially-assigned-to-the-x-role" />
+							</div>
+
+						<%
+						}
+						%>
+
+					</c:otherwise>
+				</c:choose>
+			</c:otherwise>
+		</c:choose>
+		<p class="task-activity-date">
+			<small class="muted"><%= _dateTimeFormat.format(workflowLog.getCreateDate()) %></small>
+		</p>
+	</div>
+
+<%
+}
+%>

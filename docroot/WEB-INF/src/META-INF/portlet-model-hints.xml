@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.remote.application.model.RemoteForm">
+		<field name="remoteFormId" type="long" />
+		<field name="creator" type="String" />
+		<field name="applicant" type="String" />
+		<field name="remoteDate" type="Date" />
+		<field name="endDateTime" type="Date" />
+		<field name="remark" type="String">
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="extPayload" type="String">
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="formTitle" type="String" />
+		<field name="dayTab" type="String" />
+		<field name="calendarBookingId" type="long" />
+		<field name="status" type="int" />
+		<field name="statusByUserId" type="long" />
+		<field name="statusByUsername" type="String" />
+		<field name="statusDate" type="Date" />
+		<field name="companyId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="cuserId" type="long" />
+		<field name="muserId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+	</model>
+</model-hints>

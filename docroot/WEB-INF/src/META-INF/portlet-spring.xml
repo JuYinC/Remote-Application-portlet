@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.remote.application.service.RemoteFormLocalService" class="com.remote.application.service.impl.RemoteFormLocalServiceImpl" />
+	<bean id="com.remote.application.service.persistence.RemoteFormPersistence" class="com.remote.application.service.persistence.RemoteFormPersistenceImpl" parent="basePersistence" />
+	<bean id="com.remote.application.service.persistence.RemoteFormFinder" class="com.remote.application.service.persistence.RemoteFormFinderImpl" parent="basePersistence" />
+</beans>

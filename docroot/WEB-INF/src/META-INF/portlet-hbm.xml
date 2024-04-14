@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.remote.application.model.RemoteForm" />
+	<class name="com.remote.application.model.impl.RemoteFormImpl" table="remote_RemoteForm">
+		<id name="remoteFormId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="creator" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="applicant" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="remoteDate" type="org.hibernate.type.TimestampType" />
+		<property name="endDateTime" type="org.hibernate.type.TimestampType" />
+		<property name="remark" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="extPayload" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="formTitle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="dayTab" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="calendarBookingId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="statusByUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="statusByUsername" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="statusDate" type="org.hibernate.type.TimestampType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="cuserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="muserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+	</class>
+</hibernate-mapping>
